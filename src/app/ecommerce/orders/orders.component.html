@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+<header>
+  <h1> Welcome to General Grocers</h1>
+
+  <nav>
+    <ul class="menu">
+      <li><a (click)="goToHome()">Home</a></li>
+      <li><a *ngIf="loginService.isUserLoggedIn()" (click)="goToProducts()" class="nav-link">| Products </a></li>
+      <li><a *ngIf="loginService.isUserLoggedIn()" (click)="goToCart()" class="nav-link">| Cart </a></li>
+     <li><a *ngIf="loginService.isUserLoggedIn()" href="http://localhost:4200/logout" class="nav-link">| LogOut </a></li>
+      <li><a *ngIf="loginService.isUserLoggedIn()">| Hello {{ sessionStorage.getItem('name')}} </a>  </li>
+    </ul>
+  </nav>
+
+</header>
+
+<main>
+<div>
+  <h2 align="center">Your Orders </h2>
+<table border="1" align="center">
+  <tr>
+    <th>Order No.</th>
+    <th>Order Date</th>
+    <th>Total Price</th>
+  </tr>
+  <tr *ngFor ="let order of orders">
+
+    <td><a  (click)="getOrderDetails(order.orderID)">{{order.orderID}}</a></td>
+    <td>{{order.orderDate}}</td>
+    <td>{{order.totalprice|currency:'CAD':'symbol-narrow'}}</td>
+  </tr>
+</table>
+</div>
+
+<div id="orderDetails" hidden="hidden">
+  <p align="center" style="color: brown">************ Order <b>{{selectedOrder}}</b> Details ************</p>
+  <table border="1" align="center">
+    <tr>
+      <th>Item</th>
+      <th> Quantity</th>
+      <th> Price</th>
+    </tr>
+    <tr *ngFor ="let item of items">
+      <td>{{item.dish}}</td>
+      <td>{{item.qty}}</td>
+      <td>{{item.price|currency:'CAD':'symbol-narrow'}}</td>
+
+    </tr>
+    <tr><td colspan="3">Address: <textarea cols="60">{{address}}</textarea></td></tr>
+  </table>
+</div>
+</main>
+<aside>
+  <section>
+    <h2>Share</h2>
+    <ul class="footerMenu">
+      <li><a href="#">Facebook</a></li>
+      <li><a href="#">Twitter</a></li>
+      <li><a href="#">Email</a></li>
+    </ul>
+  </section>
+</aside>
+<footer>
+  <nav class="navbar-collapse collapse">
+    <ul class="menu">
+      <li><a href="#">Contact Us</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+  </nav>
+</footer>
+</body>
+</html>

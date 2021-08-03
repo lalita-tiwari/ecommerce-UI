@@ -1,0 +1,222 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+</head>
+<body>
+
+<header>
+
+  <h1> Welcome to General Grocers</h1>
+  <a href="/" title="Go to home page">
+    <img src="logo.png" alt="Site logo">
+  </a>
+
+  <nav>
+    <ul class="menu">
+      <li><a  href="http://localhost:4200/home" class="nav-link">Home </a></li>
+      <!--<li><a href="http://localhost:4200/products"class="nav-link">Menu</a ></li>-->
+      <!--*ngIf="loginService.isUserLoggedIn()"  -->
+    </ul>
+  </nav>
+
+</header>
+
+<main>
+
+  <form [formGroup]="registerForm">
+    <h2 align="center"> Register here!</h2>
+    <table border="1" align="center">
+      <div class="form-group" >
+      <tr >
+        <td >First Name </td>
+<td>
+          <input type="text" class="form-control" formControlName="fname" [(ngModel)]="user.userFname">
+          <span class="text-danger"
+                *ngIf="(registerFormControl.fname.touched || submitted) && registerFormControl.fname.errors?.required">
+                              First Name is required
+            </span>
+</td>
+       <!-- <td  ><textarea cols="25"  name="fname" formControlName="fname" > </textarea></td>-->
+
+        <td >Middle Name</td> <td>   <input type="text" class="form-control" [(ngModel)]="user.userMname"
+                                            [ngModelOptions]="{standalone: true}"></td>
+        <td >Last Name</td>
+        <td  >  <input type="text" class="form-control" formControlName="lname" [(ngModel)]="user.userLname">
+        <span class="text-danger"
+              *ngIf="(registerFormControl.lname.touched || submitted) && registerFormControl.lname.errors?.required">
+                              Last Name is required
+            </span>
+      </td>
+      </tr>
+      <tr >
+        <td >Email</td> <td> <input type="text" class="form-control" formControlName="email" [(ngModel)]="user.userEmail">
+        <span class="text-danger"
+              *ngIf="(registerFormControl.email.touched || submitted) && registerFormControl.email.errors?.required">
+                                Email is required
+          </span>
+        <span class="text-danger"
+              *ngIf="registerFormControl.email.touched && registerFormControl.email.errors?.email">
+                                Enter a valid email address
+         </span>
+      </td>
+        <td >Password</td>    <td ><input type="password" class="form-control" formControlName="password"
+                                          [(ngModel)]="user.userPassword">
+        <span class="text-danger" style="color: red"
+              *ngIf="(registerFormControl.password.touched || submitted) && registerFormControl.password.errors?.required">
+                              Password is required
+            </span>
+        <span class="text-danger" style="color: red"
+              *ngIf="(registerFormControl.password.touched || submitted) && registerFormControl.password.errors?.pattern">
+                 Password should be atleast 8 characters long and should contain one number,
+                 one character and one special character
+            </span>
+      </td>
+
+
+        <td >Phone</td>
+        <td  >  <input type="text" class="form-control" formControlName="phone" minlength="10" maxlength="10"
+                       [(ngModel)]="user.userPhone">
+          <span class="text-danger" style="color: red"
+                *ngIf="(registerFormControl.phone.touched || submitted) && registerFormControl.phone.errors?.required">
+                              Phone is required
+            </span>
+          <span class="text-danger"
+                *ngIf="registerFormControl.phone.touched && registerFormControl.phone.errors?.minlength">
+                               phone should be 10 digits
+         </span>
+          <span class="text-danger"
+                *ngIf="registerFormControl.phone.touched && registerFormControl.phone.errors?.pattern">
+                               Enter only numbers
+         </span>
+        </td>
+
+
+        <!--<td>
+        <input type="number" class="form-control" formControlName="phone" minlength="10" maxlength="10">
+       <span class="text-danger" style="color: red"
+              *ngIf="(registerFormControl.phone.touched || submitted) && registerFormControl.phone.errors?.required">
+                              Phone is required
+            </span>
+        <span class="text-danger" style="color: red"
+              *ngIf="(registerFormControl.phone.touched || submitted) && registerFormControl.phone.errors?.minlength">
+                              Phone is required
+            </span>
+      </td>-->
+      </tr>
+
+<tr>
+  <td colspan="6" align="right" >
+
+    <input type="submit" name="Register" value="Register" class="button6" (click)="onSubmit()"/>
+  </td>
+</tr>
+      </div>
+    </table>
+
+
+
+</form>
+</main>
+<aside>
+  <section>
+    <h2>Share</h2>
+    <ul class="footerMenu">
+      <li><a href="#">Facebook</a></li>
+      <li><a href="#">Twitter</a></li>
+      <li><a href="#">Email</a></li>
+    </ul>
+  </section>
+</aside>
+<footer>
+  <nav class="navbar-collapse collapse">
+    <ul class="menu">
+      <li><a href="#">Contact Us</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+  </nav>
+</footer>
+
+</body>
+</html>
+
+
+
+
+
+<!--
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <div class="card">
+        <div class="card-header">
+          <h3>Angular Reactive Form</h3>
+        </div>
+        <div class="card-body">
+          <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label>Name</label>
+              <input type="text" class="form-control" formControlName="name">
+              <span class="text-danger"
+                    *ngIf="(registerFormControl.name.touched || submitted) && registerFormControl.name.errors?.required">
+                                Name is required
+                            </span>
+            </div>
+             <div class="form-group">
+              <label>Email</label>
+              <input type="text" class="form-control" formControlName="email">
+              <span class="text-danger"
+                    *ngIf="(registerFormControl.email.touched || submitted) && registerFormControl.email.errors?.required">
+                                Email is required
+                            </span>
+              <span class="text-danger"
+                    *ngIf="registerFormControl.email.touched && registerFormControl.email.errors?.email">
+                                Enter a valid email address
+                            </span>
+            </div>
+            &lt;!&ndash;   <div class="form-group">
+              <label>User Name</label>
+              <input type="text" class="form-control" formControlName="username">
+              <span class="text-danger"
+                    *ngIf="(registerFormControl.username.touched || submitted) && registerFormControl.username.errors?.required">
+                                User Name is required
+                            </span>
+              <span class="text-danger"
+                    *ngIf="registerFormControl.username.touched && registerFormControl.username.errors?.userNameNotAvailable">
+                                User Name is not available
+                            </span>
+            </div>
+         <div class="form-group">
+              <label>Password</label>
+              <input type="password" class="form-control" formControlName="password">
+              <span class="text-danger"
+                    *ngIf="(registerFormControl.password.touched || submitted) && registerFormControl.password.errors?.required">
+                                Password is required
+                            </span>
+              <span class="text-danger"
+                    *ngIf="registerFormControl.password.touched && registerFormControl.password.errors?.invalidPassword">
+                                Password should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase
+                                letter and 1 number
+                            </span>
+            </div>&ndash;&gt;
+           &lt;!&ndash; <div class="form-group">
+              <label>Confirm Password</label>
+              <input type="password" class="form-control" formControlName="confirmPassword">
+              <span class="text-danger"
+                    *ngIf="(registerFormControl.confirmPassword.touched || submitted)&& registerFormControl.confirmPassword.errors?.required">
+                                Confirm Password is required
+                            </span>
+              <span class="text-danger"
+                    *ngIf="registerFormControl.confirmPassword.touched && registerFormControl.confirmPassword.errors?.passwordMismatch">
+                                Passwords doesnot match
+                            </span>
+            </div>&ndash;&gt;
+            <div class="form-group">
+              <button type="submit" class="btn btn-success">Register</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>-->

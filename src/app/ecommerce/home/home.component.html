@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+<header>
+  <h1>  Welcome to General Grocers </h1>
+  <a href="/" title="Go to home page">
+    <!--<img src="assets/logo.png" alt="Site logo" style="width: 40px;height:40px ">-->
+  </a>
+
+  <nav>
+    <ul class="menu">
+      <li><a *ngIf="loginService.isUserLoggedIn()" (click)="goToProducts()" class="nav-link">Products </a></li>
+      <li><a *ngIf="loginService.isUserLoggedIn()" (click)="goToOrders()" class="nav-link">| View orders </a></li>
+      <li><a *ngIf="loginService.isUserLoggedIn()" (click)="goToCart()" class="nav-link">| Cart </a></li>
+      <li><a *ngIf="!loginService.isUserLoggedIn()" href="http://localhost:4200/register" class="nav-link">Register </a></li>
+      <!--<li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/login" class="nav-link">Login</a></li>-->
+      <li><a *ngIf="loginService.isUserLoggedIn()" href="http://localhost:4200/logout" class="nav-link">| LogOut </a></li>
+      <li><a *ngIf="loginService.isUserLoggedIn()">| Hello
+        {{ sessionStorage.getItem('name')}} </a>  </li>
+    <!--  <li><a href="http://localhost:4200" >Home</a></li>
+      <li><a href="http://localhost:4200/register">My Account</a></li>
+      <li><a href="#">View Orders</a></li>
+      <li><a href="http://localhost:4200/login">Login</a></li>-->
+
+    </ul>
+
+  </nav>
+
+</header>
+
+<main>
+  <table class="home" >
+    <tr>
+      <p>
+       <b>General Grocers in Fort Worth, TX</b>
+      </p>
+    </tr>
+    <tr>
+      <p>
+        For over 5 years, General Grocers has been committed to providing high quality produce, dietary supplements, vitamins and
+        body care product to you. As your valued community general store, we only offer the best
+        products at affordable prices every day, just for you.
+        Located in North Fort Worth,TX.
+        We are proud to serve North Fort Worth.
+
+    </p>
+    </tr>
+<tr>
+
+<p> <b>Areas Served</b></p>
+</tr><tr>
+    <p>
+  Fort Worth North, Keller, Watauga, Bed Ford, Melody Hills
+    </p>
+
+</tr>
+    <tr>
+      <p>
+        <b>Departments Offered</b></p></tr>
+    <tr><p>
+  100% Organic Produce, Body Care, Books, Bulk Foods, Dairy Products, Dietary Supplements, Frozen Products, Grab & Go,
+  Grocery, Household Products, Organic Pet Products, Meat & Seafood
+</p>
+    </tr>
+
+
+  </table>
+
+  <div  *ngIf="!loginService.isUserLoggedIn()">
+   <form [formGroup]="loginForm"  (ngSubmit)="checkLogin()">
+  <table  class="login" >
+
+    <tr>Email <td>  <input type="text" style="width:100%" [(ngModel)]="email" name="email" formControlName="email">
+      <span style="color: red"
+            *ngIf="(loginFormControl.email.touched || submitted) && loginFormControl.email.errors?.required">
+                                Email is required
+          </span>
+      <span style="color: red"
+            *ngIf="loginFormControl.email.touched && loginFormControl.email.errors?.email">
+                                Enter a valid email address
+         </span>
+    </td>
+    </tr>
+    <tr>Password <td> <input type="password" style="width:100%" [(ngModel)]="password" name="password" formControlName="password">
+      <span style="color: red"
+            *ngIf="(loginFormControl.password.touched || submitted) && loginFormControl.password.errors?.required">
+                                Password is required
+          </span></td></tr>
+    <tr><td colspan="2" align="right">
+      <input type="submit" class="button6" value="Login"  ></td></tr>
+  </table>
+   </form>
+  </div>
+</main>
+
+<aside>
+  <section>
+    <h2>Share</h2>
+    <ul class="footerMenu">
+      <li><a href="https://www.facebook.com">Facebook</a></li>
+      <li><a href="https://twitter.com">Twitter</a></li>
+      <!--<li><a href="#">Email</a></li>-->
+    </ul>
+  </section>
+</aside>
+<footer>
+  <nav class="navbar-collapse collapse">
+    <ul class="menu">
+      <li><a href="#">Contact Us</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+  </nav>
+</footer>
+</body>
+</html>
+
+
+
+
+

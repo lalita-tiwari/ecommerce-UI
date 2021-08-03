@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+<header>
+  <h1> Welcome to General Grocers</h1>
+<!--  <a href="/" title="Go to home page">
+    <img src="logo.png" alt="Site logo">
+  </a>-->
+
+  <nav>
+    <ul class="menu">
+      <li><a href="http://localhost:4200" >Home</a></li>
+      <li><a href="http://localhost:4200">My Account</a></li>
+      <li><a href="http://localhost:4200/products">Products</a></li>
+      <li><a href="#">View Orders</a></li>
+      <li><a href="http://localhost:4200/login">Login</a></li>
+
+    </ul>
+  </nav>
+
+</header>
+
+<main>
+<form (ngSubmit)="addProduct(items)" [formGroup]="productForm">
+  <h1 align="center"> Add products </h1>
+  <table align="center">
+    <div class="form-group">
+    <tr>
+      <th>Item</th>
+      <th> Price</th>
+      <th>Upload Image</th>
+    </tr>
+
+    <tr>
+      <td>
+       <input  type="text" [(ngModel)]="items.dish" name="dish"  formControlName="dish"/>
+
+        <span class="text-danger"
+              *ngIf="(productFormControl.dish.touched || submitted) && productFormControl.dish.errors?.required">
+                              Item is required.
+     </span>
+      </td>
+      <td>
+        <input  type="text" [(ngModel)]="items.price" formControlName="price" minlength="1"/>
+
+        <span class="text-danger"
+              *ngIf="(productFormControl.dish.touched || submitted) && productFormControl.dish.errors?.required">
+                              Price is required.
+      </span>
+      </td>
+      <td>
+   <input type="file" id="itemImage" formControlName="img"/>
+        <span class="text-danger"
+              *ngIf="(productFormControl.img.touched || submitted) && productFormControl.img.errors?.required">
+                              Image is required.
+     </span>
+      </td>
+
+    </tr>
+    <tr>
+      <td colspan="3"  align="right"><input type="submit" value="Add Item" /> </td>
+    </tr>
+    </div>
+  </table>
+</form>
+</main>
+
+<aside>
+  <section>
+    <h2>Share</h2>
+    <ul class="footerMenu">
+      <li><a href="https://www.facebook.com">Facebook</a></li>
+      <li><a href="https://twitter.com">Twitter</a></li>
+      <!--<li><a href="#">Email</a></li>-->
+    </ul>
+  </section>
+</aside>
+<footer>
+  <nav class="navbar-collapse collapse">
+    <ul class="menu">
+      <li><a href="#">Contact Us</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+  </nav>
+</footer>
+</body>
+</html>
+
+
+

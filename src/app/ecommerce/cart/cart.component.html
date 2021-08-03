@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<html>
+<head>
+</head>
+<body>
+
+<header>
+  <h1> Welcome to General Grocers</h1>
+  <nav>
+    <ul class="menu">
+      <li><a (click)="goToHome()" >Home</a></li>
+      <li><a *ngIf="loginService.isUserLoggedIn()" (click)="updateCart()" >Products</a></li>
+      <li><a *ngIf="loginService.isUserLoggedIn()" (click)="getOrder()">View Orders</a></li>
+
+      <li><a *ngIf="loginService.isUserLoggedIn()" href="http://localhost:4200/logout" class="nav-link">LogOut</a></li>
+      <li><a *ngIf="loginService.isUserLoggedIn()"> Hello {{sessionStorage.getItem('name')}} </a>  </li>
+    </ul>
+  </nav>
+
+</header>
+
+<main>
+
+
+<form  [formGroup]="cartForm"  (ngSubmit)="saveOrders(orders)">
+  <h2 align="center"> Place your order!</h2>
+  <table border="1" align="center">
+
+    <tr>
+      <th>Item</th>
+      <th>Price</th>
+       <th>Quantity</th>
+     <!-- <th colspan="2">Update</th>-->
+    </tr>
+    <tr>
+      <span *ngIf="totalItems==0" >
+         No item added in your cart.
+      </span>
+    </tr>
+    <tr *ngFor="let item of items">
+      <td >{{ item.dish }}</td>
+      <td >{{ item.price|currency:'CAD':'symbol-narrow'}}</td>
+      <td >{{ item.qty}} </td>
+
+    </tr>
+
+<tr>
+
+  <td ><b>Address</b> </td>
+  <td colspan="2" >
+
+    <input type="text" style="width:100%"  class="form-control" [(ngModel)]="orders.address" name="address" formControlName="address">
+
+    <span class="text-danger"
+          *ngIf="(cartFormControl.address.touched || submitted) && cartFormControl.address.errors?.required">
+                              Address is required.
+    </span>
+
+  </td>
+
+
+</tr>
+    <tr>   <td><b>Phone</b>  </td><td colspan="2">
+      <input type="text" style="width:100%" [(ngModel)]="orders.phone" formControlName="phone" name="phone" minlength="10" maxlength="10" >
+      <span class="text-danger"
+            *ngIf="(cartFormControl.phone.touched || submitted) && cartFormControl.phone.errors?.required">
+                              Phone is required.
+    </span>
+      <span class="text-danger"
+            *ngIf="cartFormControl.phone.touched && cartFormControl.phone.errors?.minlength">
+                               phone should be 10 digits.
+         </span>
+
+      <span class="text-danger"
+            *ngIf="cartFormControl.phone.touched && cartFormControl.phone.errors?.pattern">
+                               Enter only numbers.
+         </span>
+
+
+     </td>
+    </tr>
+    <tr>
+      <td ><b>Zip</b>  </td><td colspan="2" >
+        <input type="text" style="width:100%" [(ngModel)]="orders.zip" formControlName="zip" name="zip" minlength="5" maxlength="5" >
+      <span class="text-danger"
+            *ngIf="(cartFormControl.zip.touched || submitted) && cartFormControl.zip.errors?.required">
+                              zip is required.
+    </span>
+      <span class="text-danger"
+            *ngIf="cartFormControl.zip.touched && cartFormControl.zip.errors?.minlength">
+                               Zip should be 5 digits.
+         </span>
+      <span class="text-danger"
+            *ngIf="cartFormControl.zip.touched && cartFormControl.zip.errors?.pattern">
+                               Enter only numbers.
+         </span>
+      </td></tr>
+   <tr>
+      <td ><b>City</b>  </td><td colspan="2" > <input type="text" style="width:100%"  [(ngModel)]="orders.city" formControlName="city" name="city"  >
+     <span class="text-danger"
+           *ngIf="(cartFormControl.city.touched || submitted) && cartFormControl.city.errors?.required">
+                              city is required.
+    </span></td>
+    <tr>
+      <td ><b>State</b>  </td><td colspan="2" ><input type="text" style="width:100%" [(ngModel)]="orders.state" formControlName="state" name="state"  >
+      <span class="text-danger"
+            *ngIf="(cartFormControl.state.touched || submitted) && cartFormControl.state.errors?.required">
+                              state is required.
+    </span>
+    </td>
+
+</tr>
+
+    <tr align="left" aria-rowspan="2">
+      <td></td>
+      <td >
+     <b>Total Price :</b>  {{totalprice|currency:'CAD':'symbol-narrow'}}
+      </td>
+
+<!-- <textarea name="total"  ></textarea>-->
+      <td > <b>Total Items :</b>  {{totalItems}}</td>
+     </tr>
+
+    <tr>
+      <td colspan="3" align="center">
+  <input type="button"  (click)="updateCart()" value="Update Cart" class="button6"/>
+
+      </td>
+    </tr>
+    <tr aria-rowspan="2" align="center">
+      <td colspan="3">
+       <!-- <button (click)="updateCart()" class="button6">Place Order</button>-->
+
+        <input type="submit" value="Place Order" class="button6" />
+
+<span style="color: cadetblue"> (Pay Cash on Delivery)</span>
+     </td>
+    </tr>
+<tr>
+
+</tr>
+
+  </table>
+</form>
+<!--<div id="divOrder">
+  <p (click)="getOrder()"> View Order</p>
+  </div>-->
+</main>
+<aside>
+  <section>
+    <h2>Share</h2>
+    <ul class="footerMenu">
+      <li><a href="#">Facebook</a></li>
+      <li><a href="#">Twitter</a></li>
+      <li><a href="#">Email</a></li>
+    </ul>
+  </section>
+</aside>
+<footer>
+  <nav class="navbar-collapse collapse">
+    <ul class="menu">
+      <li><a href="#">Contact Us</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+  </nav>
+</footer>
+</body>
+</html>
