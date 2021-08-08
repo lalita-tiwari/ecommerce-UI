@@ -10,27 +10,19 @@
     <ul class="menu">
       <li><a (click)="goToHome()">Home</a></li>
       <li><a (click)="goToCart()">Cart</a></li>
-      <li><a *ngIf="loginService.isUserLoggedIn()" href="http://localhost:4200/order" class="nav-link">View orders</a></li>
-      <li><a *ngIf="loginService.isUserLoggedIn()" href="http://localhost:4200/logout" class="nav-link">LogOut</a></li>
+      <li><a *ngIf="loginService.isUserLoggedIn()" href="{{location}}/order" class="nav-link">View orders</a></li>
+      <li><a *ngIf="loginService.isUserLoggedIn()" href="{{location}}/logout" class="nav-link">LogOut</a></li>
       <li><a *ngIf="loginService.isUserLoggedIn()"> Hello {{sessionStorage.getItem('name')}} </a>  </li>
 
 </ul>
   </nav>
 
 </header>
-<!--<nav>
-  <ul>
-    <li><a href="#">Secondary nav</a></li>
-    <li><a href="#">Secondary nav</a></li>
-    <li><a href="#">Secondary nav</a></li>
-    <li><a href="#">Secondary nav</a></li>
-    <li><a href="#">Secondary nav</a></li>
-  </ul>
-</nav>-->
+
 <main>
 
 <h2 align="center">Products</h2>
-  <!--<form [formGroup]="productForm">-->
+
     <table border="1" align="center" >
       <thead>
       <tr>

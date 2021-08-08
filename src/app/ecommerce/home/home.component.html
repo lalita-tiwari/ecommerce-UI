@@ -15,15 +15,10 @@
       <li><a *ngIf="loginService.isUserLoggedIn()" (click)="goToProducts()" class="nav-link">Products </a></li>
       <li><a *ngIf="loginService.isUserLoggedIn()" (click)="goToOrders()" class="nav-link">| View orders </a></li>
       <li><a *ngIf="loginService.isUserLoggedIn()" (click)="goToCart()" class="nav-link">| Cart </a></li>
-      <li><a *ngIf="!loginService.isUserLoggedIn()" href="http://localhost:4200/register" class="nav-link">Register </a></li>
-      <!--<li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/login" class="nav-link">Login</a></li>-->
-      <li><a *ngIf="loginService.isUserLoggedIn()" href="http://localhost:4200/logout" class="nav-link">| LogOut </a></li>
+      <li><a *ngIf="!loginService.isUserLoggedIn()" href="{{location}}/register" class="nav-link">Register </a></li>
+      <li><a *ngIf="loginService.isUserLoggedIn()" href="{{location}}/logout" class="nav-link">| LogOut </a></li>
       <li><a *ngIf="loginService.isUserLoggedIn()">| Hello
         {{ sessionStorage.getItem('name')}} </a>  </li>
-    <!--  <li><a href="http://localhost:4200" >Home</a></li>
-      <li><a href="http://localhost:4200/register">My Account</a></li>
-      <li><a href="#">View Orders</a></li>
-      <li><a href="http://localhost:4200/login">Login</a></li>-->
 
     </ul>
 

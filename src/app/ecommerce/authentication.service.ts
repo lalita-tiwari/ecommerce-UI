@@ -21,7 +21,7 @@ export class AuthenticationService {
     data.append('email', email);
     data.append('password', password);
 
-    this.http.post("http://localhost:8080/authenticateUser",data, {responseType: 'text'}).
+    this.http.post("http://192.168.1.139:8080/authenticateUser",data, {responseType: 'text'}).
     subscribe(data=> {
     console.log(">>>>>>>>>>>>>>>>>>>user "+ data);
       if (data != null && data!= '' && data.trim() !='') {
@@ -64,8 +64,8 @@ export class AuthenticationService {
   }
 
   logOut() {
-    sessionStorage.removeItem('name')
-    localStorage.removeItem('email')
+    sessionStorage.removeItem('name');
+    localStorage.removeItem('email');
    // sessionStorage.removeItem('name')
   //  sessionStorage.removeItem('email')
   }
@@ -74,14 +74,14 @@ export class AuthenticationService {
     data.append('email', user.userEmail);
     var emailExist:boolean=false;
 
-    this.http.post<boolean>("http://localhost:8080/checkUserEmailExist", data )
+    this.http.post<boolean>("http://192.168.1.139:8080/checkUserEmailExist", data )
       .subscribe(response => {
        // console.log("response:" + res)
         emailExist= response;
         if (response) {
           alert('Email already exist');
         } else {
-          this.http.post("http://localhost:8080/saveUsers", user).subscribe(data => {
+          this.http.post("http://192.168.1.139:8080/saveUsers", user).subscribe(data => {
           });
 
           alert('Account created successfully. Please login');

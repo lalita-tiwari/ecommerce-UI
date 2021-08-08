@@ -22,12 +22,12 @@ export class RegisterComponent implements OnInit {
     "registrationDate": "", "userEmail": "", "userPassword": "", "userPhone": "",
   };
 
+  location:string=location.origin;
+
   constructor(private fb: FormBuilder,
               private http: HttpClient,
               public loginService:AuthenticationService,
-                            ) {
-
-  }
+                            ) {}
 
   ngOnInit(): void {
 
@@ -66,7 +66,7 @@ export class RegisterComponent implements OnInit {
 
 
 
-   return this.http.post<boolean>("http://localhost:8080/checkUserEmailExist", data )
+   return this.http.post<boolean>("http://192.168.1.139:8080/checkUserEmailExist", data )
      .subscribe(res => {
 
      this.emailExisted = res;

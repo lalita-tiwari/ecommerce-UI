@@ -27,6 +27,8 @@ export class ProductComponent implements OnInit {
 
   checkCondition:boolean=true;
 
+  location:string=location.origin;
+
   constructor(private http: HttpClient,
               private router: Router,
               private cartService: CartService,
@@ -38,21 +40,15 @@ export class ProductComponent implements OnInit {
 
   ngOnInit(): void {
 
-   /* this.productForm= this.fb.group({
-      itemChecked: [false, Validators.required],
-      itemQty: ['', Validators.required],
-    });*/
 
     //check if the items are already added in the cart
     if(this.cartService.cartExist) {
       this.items = this.cartService.getItems();
     }
-  /*    console.log("cart service called"
-        +this.items +"items");
-     this.items.filter(item=>item.checked).map(x=>{ console.log("checked items: "+x.dish);})*/
+
 
     else{
-      this.http.get<Items[]>("http://localhost:8080/getall").subscribe(data => {
+      this.http.get<Items[]>("http://192.168.1.139:8080/getall").subscribe(data => {
         this.items = data;
 
       });
@@ -99,6 +95,6 @@ export class ProductComponent implements OnInit {
   {
     this.router.navigate(['home']);
   }
-  //}
+
 
 }

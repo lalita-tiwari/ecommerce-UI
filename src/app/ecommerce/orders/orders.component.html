@@ -12,7 +12,7 @@
       <li><a (click)="goToHome()">Home</a></li>
       <li><a *ngIf="loginService.isUserLoggedIn()" (click)="goToProducts()" class="nav-link">| Products </a></li>
       <li><a *ngIf="loginService.isUserLoggedIn()" (click)="goToCart()" class="nav-link">| Cart </a></li>
-     <li><a *ngIf="loginService.isUserLoggedIn()" href="http://localhost:4200/logout" class="nav-link">| LogOut </a></li>
+     <li><a *ngIf="loginService.isUserLoggedIn()" href="{{location}}/logout" class="nav-link">| LogOut </a></li>
       <li><a *ngIf="loginService.isUserLoggedIn()">| Hello {{ sessionStorage.getItem('name')}} </a>  </li>
     </ul>
   </nav>

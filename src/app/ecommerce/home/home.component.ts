@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
 
   loginForm!:FormGroup;
   submitted=false;
-
+  location:string=location.origin;
 
   constructor(private router: Router,
               public loginService: AuthenticationService,

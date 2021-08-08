@@ -19,6 +19,7 @@ export class CartComponent implements OnInit {
   totalprice:string="";
   items: Items[]= this.cartService.getItems().filter(item=> item.checked==true);
   orders:Orders;
+  location:string=location.origin;
 
   //to use the validations on the page
   cartForm !:FormGroup;
@@ -108,13 +109,13 @@ export class CartComponent implements OnInit {
         /* const data: FormData = new FormData();
          data.append('orders', JSON.stringify(orders));*/
 
-        this.http.post<Orders>("http://localhost:8080/saveOrders", orders)
+        this.http.post<Orders>("http://192.168.1.139:8080/saveOrders", orders)
           .subscribe(order => {
           });
 
         alert('Your Order has been placed.');
-        //console.log(this.orders);
-         window.location.reload();
+       window.location.reload();
+
       }
    }
   }

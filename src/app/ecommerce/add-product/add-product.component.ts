@@ -17,7 +17,7 @@ export class AddProductComponent implements OnInit {
   submitted=false;
 
   public sessionStorage = sessionStorage;
-
+  location:string=location.origin;
   constructor(private http:HttpClient,
               private fb:FormBuilder) {
 
@@ -45,10 +45,10 @@ export class AddProductComponent implements OnInit {
         data.append('items', JSON.stringify(items));
         data.append('file', fileList[0]);
 
-        this.http.post("http://localhost:8080/addItem", data).subscribe(data => {
+        this.http.post("http://192.168.1.139:8080/addItem", data).subscribe(data => {
         });
       }
-      //this.http.post("http://localhost:8080/adddish",items).subscribe(data=>{});
+      //this.http.post("http://192.168.1.139:8080/adddish",items).subscribe(data=>{});
       alert('Your product has been added!');
       window.location.reload();
     }
@@ -66,7 +66,7 @@ export class AddProductComponent implements OnInit {
       console.log("FileUpload -> files", fileList[0]);
       const data: FormData = new FormData();
       data.append('file', fileList[0]);
-      this.http.post("http://localhost:8080/addAttachment",data).subscribe(data=>{});
+      this.http.post("http://192.168.1.139:8080/addAttachment",data).subscribe(data=>{});
     }
   }
 }

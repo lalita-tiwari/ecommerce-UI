@@ -15,8 +15,12 @@ export class OrdersComponent implements OnInit {
  orders:Orders[]=[];
 address:string="";
 selectedOrder:string="";
+  email:string="";
+
   public sessionStorage = sessionStorage;
   public localStorage=localStorage;
+
+  location:string=location.origin;
 
   constructor(private http: HttpClient,
               private router: Router,
@@ -25,20 +29,20 @@ selectedOrder:string="";
 
   ngOnInit(): void {
 
-    this.getUserOrders("lalita9tiwari@gmail.com");
-  /*  this.http.get<Orders[]>("http://localhost:8080/getOrders").subscribe(data => {
+    if(localStorage!=null) {
+      this.email = localStorage.getItem('email')!;
+    }
+    this.getUserOrders(this.email);
+
+  /*  this.http.get<Orders[]>("http://192.168.1.139:8080/getOrders").subscribe(data => {
       this.orders = data;
 
     });*/
   }
   getUserOrders(email:string) {
-
-    if(localStorage!=null) {
-      email = localStorage.getItem('email')!;
-    }
-    const data: FormData = new FormData();
+     const data: FormData = new FormData();
     data.append('email', email);
-  this.http.post<Orders[]>("http://localhost:8080/getUserOrders",data).subscribe(userOrders => {
+  this.http.post<Orders[]>("http://192.168.1.139:8080/getUserOrders",data).subscribe(userOrders => {
   this.orders = userOrders;
 
 });
@@ -56,19 +60,14 @@ selectedOrder:string="";
   }
 
 
-/*getOrders()
+getOrders()
 {
-  this.http.get("http://localhost:8080/getOrders").subscribe(data => {
-    //this.orders = data;
-   //data.forEach(x=> {console.log("Order Id....."+ x.OrderId);});
+  this.http.get("http://192.168.1.139:8080/getOrders").subscribe(data => {
     console.log(JSON.stringify(data))
     let jsonObject: any = JSON.parse(JSON.stringify(data));
     let orders  = <Orders[]>jsonObject;
-    console.log("DATA >>> "+orders[0].id)
-
-
-  });
-}*/
+    });
+}
   goToCart()
   {
     this.router.navigate(['cart']);

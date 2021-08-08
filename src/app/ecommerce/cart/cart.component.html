@@ -13,7 +13,7 @@
       <li><a *ngIf="loginService.isUserLoggedIn()" (click)="updateCart()" >Products</a></li>
       <li><a *ngIf="loginService.isUserLoggedIn()" (click)="getOrder()">View Orders</a></li>
 
-      <li><a *ngIf="loginService.isUserLoggedIn()" href="http://localhost:4200/logout" class="nav-link">LogOut</a></li>
+      <li><a *ngIf="loginService.isUserLoggedIn()" href="{{location}}/logout" class="nav-link">LogOut</a></li>
       <li><a *ngIf="loginService.isUserLoggedIn()"> Hello {{sessionStorage.getItem('name')}} </a>  </li>
     </ul>
   </nav>
